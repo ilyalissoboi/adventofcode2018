@@ -6,7 +6,7 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 
 with open(input_file, 'r') as f:
     input_string = f.read()
-    
+
     def reaction(input):
         empty_cycles = 0
         while True:
@@ -18,7 +18,7 @@ with open(input_file, 'r') as f:
             if input == original_input:
                 empty_cycles += 1
                 # go through the entire alphabet for the last time
-                if empty_cycles > 26:
+                if empty_cycles > len(alphabet):
                     return input
             else:
                 empty_cycles = 0
