@@ -1,9 +1,12 @@
+import sys
+
+input_file = '/Users/lissoboi/code/advent_of_code_2018/5_12_input.txt'
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-with open('/Users/lissoboi/code/advent_of_code_2018/5_12_input.txt', 'r') as f:
+with open(input_file, 'r') as f:
     input_string = f.read()
-    # input_string = 'dabAcCaCBAcCcaDA'
+    
     def reaction(input):
         empty_cycles = 0
         while True:
@@ -14,12 +17,15 @@ with open('/Users/lissoboi/code/advent_of_code_2018/5_12_input.txt', 'r') as f:
                 input = ''.join(''.join(input.split(pair)).split(reverse_pair))
             if input == original_input:
                 empty_cycles += 1
-                if empty_cycles >= 99:
+                # go through the entire alphabet for the last time
+                if empty_cycles > 26:
                     return input
+            else:
+                empty_cycles = 0
         return ''
 
     def reaction_mk2(input):
-        min_length = 99999999
+        min_length = sys.maxint
         min_product = ''
         for letter in alphabet:
             shortened_input = ''.join(''.join(input.split(letter)).split(letter.upper()))
@@ -30,5 +36,4 @@ with open('/Users/lissoboi/code/advent_of_code_2018/5_12_input.txt', 'r') as f:
         return min_product
 
     product = reaction_mk2(input_string)
-    print product
     print len(product) - 1
