@@ -8,7 +8,7 @@ with open(input_file, 'r') as f:
     input_string = f.read()
 
     def reaction(input):
-        empty_cycles = 0
+        verifications = 0
         while True:
             original_input = input
             for letter in alphabet:
@@ -16,12 +16,12 @@ with open(input_file, 'r') as f:
                 reverse_pair = letter.upper() + letter
                 input = ''.join(''.join(input.split(pair)).split(reverse_pair))
             if input == original_input:
-                empty_cycles += 1
+                verifications += 1
                 # go through the entire alphabet for the last time
-                if empty_cycles > len(alphabet):
+                if verifications > len(alphabet):
                     return input
             else:
-                empty_cycles = 0
+                verifications = 0
         return ''
 
     def reaction_mk2(input):
